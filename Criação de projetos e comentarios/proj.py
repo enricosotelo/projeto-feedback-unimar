@@ -1,0 +1,17 @@
+with open("projetos.txt", "w") as cria_proj :
+    nome = input("Qual o nome do seu projeto?: ")
+    curso = input("O seu projeto é de que curso?: ")
+    resumo = input("Descreva seu projeto brevemente: ")
+    cria_proj.write("NOME DO PROJETO: ")
+    cria_proj.write(nome)
+    cria_proj.write("\n")
+    cria_proj.write("CURSO: ")
+    cria_proj.write(curso)
+    cria_proj.write("\n")
+    cria_proj.write("RESUMO: ")
+    cria_proj.write(resumo)
+    cria_proj.write("\n")
+    conf = input("Quer comentar sobre o projeto?: ") .lower()
+    if conf == "sim" :
+            cria_proj.write("COMENTARIOS: ")
+            cria_proj.write(input(f"Comente sobre o projeto: {nome} "))
