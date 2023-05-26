@@ -1,17 +1,41 @@
-with open("projetos.txt", "w") as cria_proj :
+from dataclasses import dataclass, asdict
+import json
+
+@dataclass
+class Projeto:
+    nome: str
+    curso: str
+    resumo: str
+    comentario: str
+
+def cadastra_projeto():
     nome = input("Qual o nome do seu projeto?: ")
     curso = input("O seu projeto é de que curso?: ")
     resumo = input("Descreva seu projeto brevemente: ")
-    cria_proj.write("NOME DO PROJETO: ")
-    cria_proj.write(nome)
-    cria_proj.write("\n")
-    cria_proj.write("CURSO: ")
-    cria_proj.write(curso)
-    cria_proj.write("\n")
-    cria_proj.write("RESUMO: ")
-    cria_proj.write(resumo)
-    cria_proj.write("\n")
     conf = input("Quer comentar sobre o projeto?: ") .lower()
     if conf == "sim" :
-            cria_proj.write("COMENTARIOS: ")
-            cria_proj.write(input(f"Comente sobre o projeto: {nome} "))
+        comentario = input("Comentario: ")
+        return Projeto(nome, curso, resumo,comentario)
+    else:
+        comentario = None
+        return Projeto(nome, curso, resumo,comentario)
+             
+
+        
+
+
+
+projeto_obj = [
+    cadastra_projeto()
+]
+
+
+with open('banco_projetos.json', 'w') as arquivo:
+        projeto_dict = list(map(asdict, projeto_obj))
+        projeto_json = json.dumps(projeto_dict, indent=4)
+        arquivo.write(projeto_json)
+
+def criar_projeto(d):
+    return Projeto(**d)
+    
+projeto_json = json.dumps(projeto_dict,sort_keys=True)
