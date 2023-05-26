@@ -31,9 +31,12 @@ usuarios_obj = [
 
 
 with open('usuarios.json', 'w') as arquivo:
-    usuarios_dict = list(map(asdict, usuarios_obj))
-    usuarios_json = json.dumps(usuarios_dict, indent=4)
-    arquivo.write(usuarios_json)
+    usuario = usuarios_obj
+    usuarios_dict = None
+    if (usuario[0] != None):
+        usuarios_dict = list(map(asdict, usuario))
+        usuarios_json = json.dumps(usuarios_dict, indent=4)
+        arquivo.write(usuarios_json)
 
 def criar_usuario(d):
     return Usuario(**d)
